@@ -10,7 +10,6 @@ import { Scribble } from "./Scribble";
 
 const getDominantColor = async (url: string) => {
   const paletteURL = new URL(url);
-  console.log(paletteURL);
   paletteURL.searchParams.set("palette", "json");
   const res = await fetch(paletteURL);
   const json = await res.json();
