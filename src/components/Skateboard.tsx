@@ -7,6 +7,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
+import gsap from "gsap";
 
 type SkateboardProps = {
   deckTextureURL: string;
@@ -164,8 +165,13 @@ export function Skateboard({
     if (!wheelRefs.current || constantWheelSpin) return;
     for (const wheel of wheelRefs.current) {
       // GSAP slow down rotation
+      gsap.to(wheel.rotation, {
+        x: "+=30",
+        duration: 2.5,
+        ease: "circ.out",
+      });
     }
-  }, [constantWheelSpin]);
+  }, [constantWheelSpin, wheelTextureURL]);
 
   return (
     <group dispose={null}>
